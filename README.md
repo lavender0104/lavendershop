@@ -11,5 +11,6 @@
 3. Home Page (Header, List Products)
 4. Routing
 5. Create Node Server (Backend)
-6. Fetch Products
-7. Manage State by Reducer Hook
+6. Fetch Products (From backend data to frontend data through proxy setting through vite.config.js)
+7. Manage State by Reducer Hook (For complex data)
+8. Add on React Bootstrap
