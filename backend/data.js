@@ -2,7 +2,7 @@ const data = {
   products: [
     {
       _id: "1",
-      name: "Nike Slim shirt",
+      name: "Nike Slim Shirt",
       slug: "nike-slim-shirt",
       category: "Shirts",
       image: "/images/p1.jpg", // 679px x 829px
@@ -28,7 +28,7 @@ const data = {
     },
     {
       _id: "3",
-      name: "Nike Slim pant",
+      name: "Nike Slim Pant",
       slug: "nike-slim-pant",
       category: "Pants",
       image: "/images/p3.jpg",

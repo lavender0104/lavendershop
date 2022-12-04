@@ -22,4 +22,8 @@
 14. Complete Add To Cart
     14.1. Prevent duplicate item in the cart
     14.2. Check item stock in the backend
-15.
+15. Create Cart Screen
+16. Make Home Page Add to cart work
+17. Complete Cart Screen
+    17.1. - + delete function of the cart items
+    17.2. Use localStorage to persist cart items
