@@ -18,4 +18,5 @@
 10. Create Rating Component and convert product lists to Bootstrap x
 11. Create Product Detail Screen x
 12. Create Loading Component x
-13. Create Cart
+13. Create Cart with React Context x
+14. Make Cart function properly
