@@ -19,4 +19,7 @@
 11. Create Product Detail Screen x
 12. Create Loading Component x
 13. Create Cart with React Context x
-14. Make Cart function properly
+14. Complete Add To Cart
+    14.1. Prevent duplicate item in the cart
+    14.2. Check item stock in the backend
+15.
