@@ -3,6 +3,7 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Product from "../components/Product";
+import { Helmet } from "react-helmet-async";
 // import data from "../data";
 
 const reducer = (state, action) => {
@@ -24,22 +25,24 @@ const HomeScreen = () => {
     loading: true,
     error: "",
   });
-  //const [products, setProducts] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get("api/products");
+        const result = await axios.get("/api/products");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: err.message });
       }
-      //setProducts(result.data);
     };
     fetchData();
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>LavenderShop with vite + React</title>
+      </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (

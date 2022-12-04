@@ -16,7 +16,7 @@ main {
 }
 
 .btn-primary {
-  background-color: rgb(176, 196, 184);
+  background-color: #1993da;
   color: #000000;
 }
 
@@ -41,4 +41,8 @@ main {
 
 .product-info {
   padding: 1rem;
+}
+
+.img-large {
+  max-width: 100%;
 }

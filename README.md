@@ -16,4 +16,4 @@
 8. Add on React Bootstrap
 9. Create Product Component by using React Bootstrap
 10. Create Rating Component and convert product lists to Bootstrap
-11.
+11. Create Product Detail Screen
