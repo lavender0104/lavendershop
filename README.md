@@ -14,3 +14,6 @@
 6. Fetch Products (From backend data to frontend data through proxy setting through vite.config.js)
 7. Manage State by Reducer Hook (For complex data)
 8. Add on React Bootstrap
+9. Create Product Component by using React Bootstrap
+10. Create Rating Component and convert product lists to Bootstrap
+11.

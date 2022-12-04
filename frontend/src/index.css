@@ -15,6 +15,15 @@ main {
   flex: 1;
 }
 
+.btn-primary {
+  background-color: rgb(176, 196, 184);
+  color: #000000;
+}
+
+.rating span {
+  color: rgb(255, 165, 52);
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
