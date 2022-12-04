@@ -19,11 +19,36 @@
 11. Create Product Detail Screen x
 12. Create Loading Component x
 13. Create Cart with React Context x
-14. Complete Add To Cart
-    14.1. Prevent duplicate item in the cart
-    14.2. Check item stock in the backend
-15. Create Cart Screen
-16. Make Home Page Add to cart work
-17. Complete Cart Screen
-    17.1. - + delete function of the cart items
-    17.2. Use localStorage to persist cart items
+14. Complete Add To Cart x
+    14.1. Prevent duplicate item in the cart x
+    14.2. Check item stock in the backend x
+15. Create Cart Screen x
+16. Make Home Page Add to cart work x
+17. Complete Cart Screen x
+    17.1. - + delete function of the cart items x
+    17.2. Use localStorage to persist cart items x
+18. Create Sign In Screen x
+    18.1. Create sign in form x
+    18.2. Add email and password x
+    18.3. Add signin button x
+19. Connect to MongoDB x
+    19.1. Create atlas mongodb (cloud server) x
+    19.2. install local mongodb
+    19.3. npm install mongoose x
+    19.4. connect to mongodb x
+20. Seed Sample Data
+    20.1. create Product model
+    20.2. create seed route
+    20.3. use route in server.js
+    20.4. seed sample product
+21. Seed Sample Users
+    21.1 create User model
+    21.2 seed sample users
+    21.3 create user route
+22. Create Signin Backend API
+    22.1 create signin api
+    22.1 npm install jsonwebtoken
+    22.1 define generate token
+
+MongoDB username : lavendershop
+MongoDB password : lavendershopmongodb69
