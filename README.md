@@ -36,19 +36,33 @@
     19.2. install local mongodb
     19.3. npm install mongoose x
     19.4. connect to mongodb x
-20. Seed Sample Data
-    20.1. create Product model
-    20.2. create seed route
-    20.3. use route in server.js
-    20.4. seed sample product
-21. Seed Sample Users
-    21.1 create User model
-    21.2 seed sample users
-    21.3 create user route
-22. Create Signin Backend API
-    22.1 create signin api
-    22.1 npm install jsonwebtoken
-    22.1 define generate token
+20. Seed Sample Data x
+    20.1. create Product model x
+    20.2. create seed route x
+    20.3. use route in server.js x
+    20.4. seed sample product x
+21. Seed Sample Users x
+    21.1. create User model x
+    21.2.seed sample users x
+    21.3. create user route x
+22. Create Signin Backend API x
+    22.1. create signin api x
+    22.2. npm install jsonwebtoken x
+    22.3. define generate token x
+23. Complete Signin Screen x
+    23.1. handle submit action x
+    23.2. save token in store and localStorage x
+    23.3. show username in header x
+    23.4. sign out
+    23.5. Fix redirect problem after sign in still can access sign in page x
+    23.6. Install toastify to show greater toast message
+    23.7. use utils.js to show error from backend
 
 MongoDB username : lavendershop
 MongoDB password : lavendershopmongodb69
+
+checkout
+shipping
+user profile
+order history
+admin
