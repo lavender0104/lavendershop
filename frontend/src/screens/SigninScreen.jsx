@@ -35,6 +35,7 @@ export default function SigninScreen() {
     }
   };
 
+  // to prevent signed in user to go to sign in page
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
