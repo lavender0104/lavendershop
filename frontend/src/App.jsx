@@ -25,6 +25,7 @@ import SearchBox from "./components/SearchBox";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import SearchScreen from "./screens/SearchScreen";
+import VerifyScreen from "./screens/VerifyScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -145,6 +146,7 @@ function App() {
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/search" element={<SearchScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
+              <Route path="/verify" element={<VerifyScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />

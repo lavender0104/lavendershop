@@ -19,26 +19,27 @@ export default function SigninScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+
   const submitHandler = async (e) => {
     // prevent the page from refresh when clicking the button
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/users/signin", {
+      const { data } = await axios.post("/api/users/verify", {
         email,
         password,
       });
-      ctxDispatch({ type: "USER_SIGNIN", payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate(redirect || "/");
+      ctxDispatch({ type: "TEMP_USER_SIGNIN", payload: data });
+      localStorage.setItem("tempuserInfo", JSON.stringify(data));
+      const temp = JSON.parse(localStorage.getItem("tempuserInfo"));
+      navigate("/verify");
     } catch (err) {
       toast.error(getError(err));
     }
   };
 
-  // to prevent signed in user to go to sign in page
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      navigate("/");
     }
   }, [navigate, redirect, userInfo]);
 

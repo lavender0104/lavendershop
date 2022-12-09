@@ -3,15 +3,74 @@ import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import { isAuth, generateToken } from "../utils.js";
 import expressAsyncHandler from "express-async-handler";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const genRanSixNum = () => {
+  return Math.floor(100000 + Math.random() * 900000);
+};
+
+const transporter = nodemailer.createTransport({
+  service: "hotmail",
+  auth: {
+    user: process.env.SENDER_EMAIL,
+    pass: process.env.SENDER_PASSWORD,
+  },
+});
 
 const userRouter = express.Router();
 
 userRouter.post(
-  "/signin",
+  "/verify",
   expressAsyncHandler(async (req, res) => {
-    const user = await User.findOne({ email: req.body.email });
+    const requestEmail = req.body.email;
+    console.log(requestEmail);
+    const user = await User.findOne({ email: requestEmail });
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
+        const pinCode = genRanSixNum();
+        const mailOptions = {
+          from: process.env.SENDER_EMAIL,
+          to: requestEmail,
+          subject: "Please enter below PIN code to be verify",
+          text: `PIN Code : ${pinCode}`,
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log(`Email Sent : ${info.response}`);
+          }
+        });
+        res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          pinCode: pinCode,
+        });
+        return;
+      }
+    }
+    res.status(401).send({ message: "Invalid email or password" });
+  })
+);
+
+userRouter.post(
+  "/signin",
+  expressAsyncHandler(async (req, res) => {
+    // const tempItem = localStorage.getItem("tempuserInfo")
+    //   ? JSON.parse(localStorage.getItem("tempuserInfo"))
+    //   : {};
+    // const localStoragePinCode = tempItem.pinCode;
+
+    const user = await User.findOne({ email: req.body.tempuserInfo.email });
+    console.log(req.body);
+    if (user) {
+      // if (localStoragePinCode === req.body.pinCode) {
+      if (req.body.pinCode == req.body.tempuserInfo.pinCode) {
         res.send({
           _id: user._id,
           name: user.name,
@@ -22,7 +81,12 @@ userRouter.post(
         return;
       }
     }
-    res.status(401).send({ message: "Invalid email or password" });
+    res
+      .status(401)
+      .send({
+        message:
+          "Invalid Pin Code, please enter 6-digit that we sent to your email",
+      });
   })
 );
 
