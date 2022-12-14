@@ -9,7 +9,7 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SignupScreen from "./screens/SignupScreen";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";

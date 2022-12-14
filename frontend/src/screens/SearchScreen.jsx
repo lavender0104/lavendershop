@@ -264,18 +264,18 @@ export default function SearchScreen() {
                   <LinkContainer
                     key={x + 1}
                     to={{
-                        pathname: "/search",
-                        search: getFilterUrl({ page: x + 1 }).substring(7),
-                      }}
+                      pathname: "/search",
+                      search: getFilterUrl({ page: x + 1 }).substring(7),
+                    }}
+                  >
+                    <Button
+                      className={Number(page) === x + 1 ? "text-bold" : ""}
+                      variant="light"
                     >
-                      <Button
-                        className={Number(page) === x + 1 ? "text-bold" : ""}
-                        variant="light"
-                      >
-                        {x + 1}
-                      </Button>
-                    </LinkContainer>
-                  ))}
+                      {x + 1}
+                    </Button>
+                  </LinkContainer>
+                ))}
               </div>
             </>
           )}

@@ -81,12 +81,10 @@ userRouter.post(
         return;
       }
     }
-    res
-      .status(401)
-      .send({
-        message:
-          "Invalid Pin Code, please enter 6-digit that we sent to your email",
-      });
+    res.status(401).send({
+      message:
+        "Invalid Pin Code, please enter 6-digit that we sent to your email",
+    });
   })
 );
 

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 
 export const Store = createContext();
 
@@ -22,7 +22,7 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "CART_ADD_ITEM":
+    case "CART_ADD_ITEM": {
       // Add to cart
       // When new item is being added, the payload will store into newItem
       const newItem = action.payload;
@@ -41,7 +41,7 @@ const reducer = (state, action) => {
       // Save inside localStorage for cart items
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
-
+    }
     case "CART_REMOVE_ITEM": {
       const cartItems = state.cart.cartItems.filter(
         (item) => item._id !== action.payload._id
