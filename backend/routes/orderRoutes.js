@@ -21,8 +21,12 @@ orderRouter.post(
   "/",
   isAuth,
   expressAsyncHandler(async (req, res) => {
+    const orderItems = req.body.orderItems.map((x) => ({
+      ...x,
+      product: x._id,
+    }));
     const newOrder = new Order({
-      orderItems: req.body.orderItems.map((x) => ({ ...x, product: x._id })),
+      orderItems: orderItems,
       shippingAddress: req.body.shippingAddress,
       paymentMethod: req.body.paymentMethod,
       itemsPrice: req.body.itemsPrice,
@@ -33,6 +37,13 @@ orderRouter.post(
     });
 
     const order = await newOrder.save();
+    orderItems.forEach((item) => {
+      Product.updateOne(
+        { _id: item._id },
+        { $inc: { countInStock: -item.quantity } },
+        (err, updatedData) => {}
+      );
+    });
     res.status(201).send({ message: "New Order Created", order });
   })
 );
