@@ -25,7 +25,6 @@ orderRouter.post(
       ...x,
       product: x._id,
     }));
-
     const newOrder = new Order({
       orderItems: orderItems,
       shippingAddress: req.body.shippingAddress,
@@ -41,9 +40,7 @@ orderRouter.post(
     orderItems.forEach((item) => {
       Product.updateOne(
         { _id: item._id },
-        {
-          $inc: { countInStock: -item.quantity },
-        },
+        { $inc: { countInStock: -item.quantity } },
         (err, updatedData) => {}
       );
     });
