@@ -30,6 +30,11 @@ export default function SigninScreen() {
       });
       ctxDispatch({ type: "TEMP_USER_SIGNIN", payload: data });
       localStorage.setItem("tempuserInfo", JSON.stringify(data));
+      setTimeout(() => {
+        localStorage.removeItem("tempuserInfo");
+        ctxDispatch({ type: "TEMP_USER_SIGNOUT", payload: null });
+        console.log(`30 seconds has passed`);
+      }, 30000);
       const temp = JSON.parse(localStorage.getItem("tempuserInfo"));
       navigate("/verify");
     } catch (err) {
