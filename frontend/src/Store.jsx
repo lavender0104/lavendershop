@@ -53,6 +53,8 @@ const reducer = (state, action) => {
       return { ...state, cart: { ...state.cart, cartItems: [] } };
     case "TEMP_USER_SIGNIN":
       return { ...state, tempuserInfo: action.payload };
+    case "TEMP_USER_SIGNOUT":
+      return { ...state, tempuserInfo: null };
     case "USER_SIGNIN":
       return { ...state, userInfo: action.payload, tempuserInfo: null };
     case "USER_SIGNOUT":

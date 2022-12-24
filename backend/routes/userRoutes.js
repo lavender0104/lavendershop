@@ -152,25 +152,25 @@ userRouter.post(
     //   ? JSON.parse(localStorage.getItem("tempuserInfo"))
     //   : {};
     // const localStoragePinCode = tempItem.pinCode;
-
-    const user = await User.findOne({ email: req.body.tempuserInfo.email });
-    console.log(req.body);
-    if (user) {
-      // if (localStoragePinCode === req.body.pinCode) {
-      if (req.body.pinCode == req.body.tempuserInfo.pinCode) {
-        res.send({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          isAdmin: user.isAdmin,
-          token: generateToken(user),
-        });
-        return;
+    if (req.body.tempuserInfo !== null) {
+      const user = await User.findOne({ email: req.body.tempuserInfo.email });
+      console.log(req.body);
+      if (user) {
+        // if (localStoragePinCode === req.body.pinCode) {
+        if (req.body.pinCode == req.body.tempuserInfo.pinCode) {
+          res.send({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user),
+          });
+          return;
+        }
       }
     }
     res.status(401).send({
-      message:
-        "Invalid Pin Code, please enter 6-digit that we sent to your email",
+      message: "INVALID or EXPIRED pin code",
     });
   })
 );

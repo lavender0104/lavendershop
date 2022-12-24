@@ -21,10 +21,12 @@ orderRouter.post(
   "/",
   isAuth,
   expressAsyncHandler(async (req, res) => {
+    console.log(`Before map : ${req.body.orderItems}`);
     const orderItems = req.body.orderItems.map((x) => ({
       ...x,
       product: x._id,
     }));
+    console.log(`After map : ${orderItems}`);
     const newOrder = new Order({
       orderItems: orderItems,
       shippingAddress: req.body.shippingAddress,
