@@ -27,9 +27,17 @@ export default function SignupScreen() {
 
   const formValidation = () => {
     console.log("Validating the form");
+    // 8 to unlimited characters, must have like qW1@xxxx like pattern
     const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
+    // 6 to 15 characters, must have 1 letter, number is optional, no special character and space
+    const userNameRegex = /^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-Z0-9]{6,15}$/;
+
     let errors = {};
+    if (!name.match(userNameRegex)) {
+      errors.name =
+        "6 to 15 characters, must have 1 letter, number is optional, no special character and space";
+    }
     if (!password.match(passwordRegex)) {
       errors.password =
         "password must be 8 and above characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
