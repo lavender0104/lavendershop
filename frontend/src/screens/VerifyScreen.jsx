@@ -28,7 +28,6 @@ export default function VerifyScreen() {
         pinCode,
         tempuserInfo,
       });
-      console.log(tempuserInfo);
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
 

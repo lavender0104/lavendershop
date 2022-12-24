@@ -33,7 +33,7 @@ export default function SigninScreen() {
       setTimeout(() => {
         localStorage.removeItem("tempuserInfo");
         ctxDispatch({ type: "TEMP_USER_SIGNOUT", payload: null });
-        console.log(`30 seconds has passed`);
+        // console.log(`30 seconds has passed`);
       }, 30000);
       const temp = JSON.parse(localStorage.getItem("tempuserInfo"));
       navigate("/verify");
