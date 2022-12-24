@@ -22,23 +22,48 @@ export default function SignupScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+
+  const [formErrors, setFormErrors] = useState({});
+
+  const formValidation = () => {
+    console.log("Validating the form");
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    let errors = {};
+    if (!password.match(passwordRegex)) {
+      errors.password =
+        "password must be 8 and above characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character";
+    }
+    if (password !== confirmPassword) {
+      errors.confirmPassword = "password and confirm password must be SAME";
+    }
+
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-    try {
-      const { data } = await Axios.post("/api/users/signup", {
-        name,
-        email,
-        password,
-      });
-      ctxDispatch({ type: "USER_SIGNIN", payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate(redirect || "/");
-    } catch (err) {
-      toast.error(getError(err));
+
+    if (formValidation()) {
+      toast.error("Sign up unsuccessful");
+    } else {
+      try {
+        const { data } = await Axios.post("/api/users/signup", {
+          name,
+          email,
+          password,
+        });
+        ctxDispatch({ type: "USER_SIGNIN", payload: data });
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        navigate(redirect || "/");
+      } catch (err) {
+        toast.error(getError(err));
+      }
     }
   };
 
@@ -56,13 +81,22 @@ export default function SignupScreen() {
       <h1 className="my-3">Sign Up</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control onChange={(e) => setName(e.target.value)} required />
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+
+          {formErrors.name && <p className="text-danger">{formErrors.name}</p>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            placeholder="example@gmail.com"
             type="email"
             required
             onChange={(e) => setEmail(e.target.value)}
@@ -72,17 +106,28 @@ export default function SignupScreen() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
+            value={password}
             required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Form.Group className="mb-3" controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
+          {formErrors.password && (
+            <p className="text-danger">{formErrors.password}</p>
+          )}
+        </Form.Group>
+        {/* <Form.Control.Feedback type="invalid">
+            {showMessage}
+          </Form.Control.Feedback> */}
+        <Form.Group className="mb-3" controlId="confirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          {formErrors.confirmPassword && (
+            <p className="text-danger">{formErrors.confirmPassword}</p>
+          )}
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Sign Up</Button>

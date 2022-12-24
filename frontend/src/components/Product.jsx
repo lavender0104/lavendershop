@@ -34,7 +34,7 @@ const Product = (props) => {
         <Link to={`/product/${product.slug}`}>
           <Card.Title>{product.name}</Card.Title>
         </Link>
-        <Rating rating={product.rating} numReviews={product.numReviews} />
+        <Rating rating={product.rating} />
         <Card.Text>RM {product.price}</Card.Text>
         {product.countInStock === 0 ? (
           <Button variant="light" disabled>

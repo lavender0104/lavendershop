@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import CheckoutSteps from "../components/CheckoutSteps";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 export default function ShippingAddressScreen() {
   const navigate = useNavigate();
@@ -52,6 +54,11 @@ export default function ShippingAddressScreen() {
     );
     navigate("/payment");
   };
+
+  const handleSelect = (e) => {
+    setCountryState(e);
+  };
+
   return (
     <div>
       <Helmet>
@@ -96,11 +103,36 @@ export default function ShippingAddressScreen() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="state">
             <Form.Label>State</Form.Label>
-            <Form.Control
+            {/* <Form.Control
               value={countryState}
               onChange={(e) => setCountryState(e.target.value)}
               required
-            />
+            /> */}
+            <DropdownButton
+              title={countryState ? countryState : "Select Your State"}
+              id="dropdown-menu"
+              variant="info"
+              onSelect={handleSelect}
+            >
+              <Dropdown.Item eventKey="Johor">Johor</Dropdown.Item>
+              <Dropdown.Item eventKey="Kedah">Kedah</Dropdown.Item>
+              <Dropdown.Item eventKey="Kelantan">Kelantan</Dropdown.Item>
+              <Dropdown.Item eventKey="Kuala Lumpur">
+                Kuala Lumpur
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="Malacca">Malacca</Dropdown.Item>
+              <Dropdown.Item eventKey="Negeri Sembilan">
+                Negeri Sembilan
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="Pahang">Pahang</Dropdown.Item>
+              <Dropdown.Item eventKey="Penang">Penang</Dropdown.Item>
+              <Dropdown.Item eventKey="Perak">Perak</Dropdown.Item>
+              <Dropdown.Item eventKey="Perlis">Perlis</Dropdown.Item>
+              <Dropdown.Item eventKey="Sabah">Sabah</Dropdown.Item>
+              <Dropdown.Item eventKey="Sarawak">Sarawak</Dropdown.Item>
+              <Dropdown.Item eventKey="Selangor">Selangor</Dropdown.Item>
+              <Dropdown.Item eventKey="Terengganu">Terengganu</Dropdown.Item>
+            </DropdownButton>
           </Form.Group>
           <div className="mb-3">
             <Button variant="primary" type="submit">

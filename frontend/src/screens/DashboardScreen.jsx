@@ -81,7 +81,7 @@ export default function DashboardScreen() {
                       ? summary.orders[0].numOrders
                       : 0}
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text>Orders</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -94,7 +94,7 @@ export default function DashboardScreen() {
                       ? summary.orders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text>Sales</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -111,6 +111,8 @@ export default function DashboardScreen() {
                 loader={<div>Loading Chart...</div>}
                 data={[
                   ["Date", "Sales"],
+                  // create a dropdownlist option to let the user to select option
+                  // use filter method base on the dropdownlist selectedYear
                   ...summary.dailyOrders.map((x) => [x._id, x.sales]),
                 ]}
               ></Chart>

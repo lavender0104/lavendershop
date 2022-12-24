@@ -38,7 +38,21 @@ export default function PlaceOrderScreen() {
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
-  cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
+  cart.shippingPrice = 0;
+
+  switch (cart.shippingAddress.countryState) {
+    case "Kuala Lumpur":
+    case "Selangor":
+      cart.shippingPrice = 5;
+      break;
+    case "Sabah":
+    case "Sarawak":
+      cart.shippingPrice = 20;
+      break;
+    default:
+      cart.shippingPrice = 15;
+  }
+
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
 
   const placeOrderHandler = async () => {
@@ -91,9 +105,9 @@ export default function PlaceOrderScreen() {
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
                 <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                <strong>Address: </strong> {cart.shippingAddress.address},
-                {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
-                {cart.shippingAddress.countryState}
+                <strong>Address: </strong> {cart.shippingAddress.address},{" "}
+                {cart.shippingAddress.city}, {cart.shippingAddress.countryState}{" "}
+                , {cart.shippingAddress.postalCode}
               </Card.Text>
               <Link to="/shipping">Edit</Link>
             </Card.Body>
@@ -127,7 +141,7 @@ export default function PlaceOrderScreen() {
                       <Col md={3}>
                         <span>Quantity : {item.quantity}</span>
                       </Col>
-                      <Col md={3}>Price : RM{item.price}</Col>
+                      <Col md={3}>Each Price : RM{item.price}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
