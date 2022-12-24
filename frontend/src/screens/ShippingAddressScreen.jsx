@@ -19,12 +19,15 @@ export default function ShippingAddressScreen() {
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
   );
+  const [countryState, setCountryState] = useState(
+    shippingAddress.countryState || ""
+  );
+
   useEffect(() => {
     if (!userInfo) {
       navigate("/signin?redirect=/shipping");
     }
   }, [userInfo, navigate]);
-  const [country, setCountry] = useState(shippingAddress.country || "");
   const submitHandler = (e) => {
     e.preventDefault();
     ctxDispatch({
@@ -34,7 +37,7 @@ export default function ShippingAddressScreen() {
         address,
         city,
         postalCode,
-        country,
+        countryState,
       },
     });
     localStorage.setItem(
@@ -44,7 +47,7 @@ export default function ShippingAddressScreen() {
         address,
         city,
         postalCode,
-        country,
+        countryState,
       })
     );
     navigate("/payment");
@@ -91,11 +94,11 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
-            <Form.Label>Country</Form.Label>
+          <Form.Group className="mb-3" controlId="state">
+            <Form.Label>State</Form.Label>
             <Form.Control
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              value={countryState}
+              onChange={(e) => setCountryState(e.target.value)}
               required
             />
           </Form.Group>
