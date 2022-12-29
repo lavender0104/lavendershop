@@ -10,6 +10,7 @@ import { Store } from "../Store";
 
 export default function Notification() {
   const [notification, setNotification] = useState("");
+  const [title, setTitle] = useState("");
   const { state } = useContext(Store);
   const { userInfo } = state;
 
@@ -21,13 +22,14 @@ export default function Notification() {
         "/api/notification",
         {
           to: "All",
+          title: title,
           message: notification,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         }
       );
-      toast.success("notification sent");
+      toast.success("Notification Sent");
     } catch (err) {
       toast.error(getError(err));
     }
@@ -38,13 +40,23 @@ export default function Notification() {
       <Helmet>
         <title>Send Notification For All User</title>
       </Helmet>
-      <h1 className="my-3">NOTIFICATION</h1>
+      <h1 className="my-3">Notification</h1>
       <Form onSubmit={submitHandler}>
+        <Form.Group className="mb-3" controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            placeholder="Title..."
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="notification">
           <Form.Label>Message to user</Form.Label>
           <Form.Control
             placeholder="Write something to send to all user..."
-            name="notificatio"
+            name="notification"
             value={notification}
             onChange={(e) => setNotification(e.target.value)}
             required

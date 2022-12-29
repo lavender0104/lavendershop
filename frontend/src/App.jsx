@@ -35,6 +35,8 @@ import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import NotificationScreen from "./screens/Notification";
+import UserNotificationScreen from "./screens/UserNotificationScreen";
+import NotificationDetail from "./screens/NotificationDetail";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -102,6 +104,9 @@ function App() {
                       </LinkContainer>
                       <LinkContainer to="/orderhistory">
                         <NavDropdown.Item>Order History</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/usernotification">
+                        <NavDropdown.Item>Notification</NavDropdown.Item>
                       </LinkContainer>
                       <NavDropdown.Divider />
                       <Link
@@ -198,6 +203,22 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <OrderHistoryScreen />
+                  </ProtectedRoute>
+                }
+              ></Route>
+              <Route
+                path="/usernotification"
+                element={
+                  <ProtectedRoute>
+                    <UserNotificationScreen />
+                  </ProtectedRoute>
+                }
+              ></Route>
+              <Route
+                path="/notification/:id"
+                element={
+                  <ProtectedRoute>
+                    <NotificationDetail />
                   </ProtectedRoute>
                 }
               ></Route>
