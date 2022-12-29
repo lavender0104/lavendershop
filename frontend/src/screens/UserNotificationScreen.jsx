@@ -75,7 +75,7 @@ export default function UserNotificationScreen() {
               <tr key={notification._id}>
                 <td>{notification.createdAt.substring(0, 10)}</td>
                 <td>{notification.title}</td>
-                <td>{notification.message}</td>
+                <td className="eliipsis">{notification.message}</td>
                 <td>
                   <Button
                     type="button"

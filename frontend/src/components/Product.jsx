@@ -26,9 +26,14 @@ const Product = (props) => {
     });
   };
   return (
-    <Card>
+    <Card style={{ overflow: "hidden" }}>
       <Link to={`/product/${product.slug}`}>
-        <img src={product.image} className="card-img-top" alt={product.name} />
+        <img
+          src={product.image}
+          className="card-img-top"
+          alt={product.name}
+          style={{ width: "18rem", height: "15rem" }}
+        />
       </Link>
       <Card.Body>
         <Link to={`/product/${product.slug}`}>

@@ -53,7 +53,7 @@ main {
 }
 
 .small-container {
-  max-width: 600px;
+  max-width: 700px;
 }
 
 .checkout-steps > div {
@@ -89,4 +89,11 @@ main {
 }
 .text-bold {
   font-weight: bold;
+}
+
+.eliipsis {
+  max-width: 500px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
