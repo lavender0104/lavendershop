@@ -62,6 +62,7 @@ export default function VerifyScreen() {
             }}
           />
         </Form.Group>
+        <h4>Code will expired after 30 seconds</h4>
         <div className="mb-3">
           <Button type="submit">Continue</Button>
         </div>
