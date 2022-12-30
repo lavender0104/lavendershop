@@ -87,6 +87,10 @@ export default function ProductEditScreen() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (price < 0 || countInStock < 0) {
+      alert("Price or CountInStock cannot less than 0");
+      return;
+    }
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(

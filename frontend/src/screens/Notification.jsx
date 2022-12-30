@@ -55,7 +55,7 @@ export default function Notification() {
         <Form.Group className="mb-3" controlId="notification">
           <Form.Label>Message to user</Form.Label>
           <Form.Control
-            placeholder="Write something to send to all user..."
+            placeholder="Write something to notify all user..."
             name="notification"
             value={notification}
             onChange={(e) => setNotification(e.target.value)}
