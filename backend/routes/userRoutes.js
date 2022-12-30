@@ -154,7 +154,6 @@ userRouter.post(
     // const localStoragePinCode = tempItem.pinCode;
     if (req.body.tempuserInfo !== null) {
       const user = await User.findOne({ email: req.body.tempuserInfo.email });
-      console.log(req.body);
       if (user) {
         // if (localStoragePinCode === req.body.pinCode) {
         if (req.body.pinCode == req.body.tempuserInfo.pinCode) {
