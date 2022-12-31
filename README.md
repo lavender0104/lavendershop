@@ -28,7 +28,7 @@
     $ npm run dev
     $ on browser, go to localhost:5173
 
-# 5. For the first run, seed users and products
+# 5. If you have changed the MONGODB_URI which mean you are not using our MONGODB_URI, you need to run this to seed users and products
 
     $ on browser, go to localhost:5000/api/seed
     $ default users and products will be created
