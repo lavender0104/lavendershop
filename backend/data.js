@@ -26,7 +26,6 @@ const data = {
       countInStock: 10,
       brand: "Nike",
       rating: 1.5,
-      numReviews: 10,
       description: "high quality Nike slim shirt",
     },
     {
@@ -39,7 +38,6 @@ const data = {
       countInStock: 20,
       brand: "Adidas",
       rating: 4.0,
-      numReviews: 10,
       description: "high quality Adidas fit shirt",
     },
     {
@@ -52,7 +50,6 @@ const data = {
       countInStock: 0,
       brand: "Nike",
       rating: 4.5,
-      numReviews: 14,
       description: "high quality Nike slim pant",
     },
     {
@@ -65,7 +62,6 @@ const data = {
       countInStock: 5,
       brand: "Adidas",
       rating: 5.0,
-      numReviews: 10,
       description: "high quality Adidas fit pant",
     },
   ],
