@@ -16,6 +16,7 @@
 
 # 3. Run backend server
 
+    $ npm install
     $ cd backend
     $ npm install
     $ npm start
