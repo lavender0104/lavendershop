@@ -13,7 +13,8 @@ const genRanSixNum = () => {
 };
 
 const transporter = nodemailer.createTransport({
-  service: "hotmail",
+  service: "outlook",
+  port: 465,
   auth: {
     user: process.env.SENDER_EMAIL,
     pass: process.env.SENDER_PASSWORD,
@@ -99,13 +100,14 @@ userRouter.post(
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         const pinCode = genRanSixNum();
+        console.log("sent pincode:" + pinCode);
         const mailOptions = {
           from: process.env.SENDER_EMAIL,
           to: requestEmail,
           subject: "Please enter below PIN code to be verify",
           text: `PIN Code : ${pinCode}`,
         };
-        transporter.sendMail(mailOptions, function (error, info) {
+        await transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
             console.log(error);
           } else {
@@ -155,6 +157,9 @@ userRouter.post(
     if (req.body.tempuserInfo !== null) {
       const user = await User.findOne({ email: req.body.tempuserInfo.email });
       if (user) {
+        console.log(
+          `Sent Code: ${req.body.pinCode} and tempUser Code ${req.body.tempuserInfo.pinCode}`
+        );
         // if (localStoragePinCode === req.body.pinCode) {
         if (req.body.pinCode == req.body.tempuserInfo.pinCode) {
           res.send({
