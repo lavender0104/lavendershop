@@ -5,7 +5,11 @@ import Rating from "./Rating";
 import axios from "axios";
 import React, { useContext } from "react";
 import { Store } from "../Store";
-
+const truncateText = {
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+};
 const Product = (props) => {
   const { product } = props;
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -26,18 +30,21 @@ const Product = (props) => {
     });
   };
   return (
-    <Card style={{ overflow: "hidden" }}>
+    <Card style={{ overflow: "hidden", maxHeight: "25rem", wordWrap: true }}>
       <Link to={`/product/${product.slug}`}>
         <img
           src={product.image}
           className="card-img-top"
           alt={product.name}
-          style={{ width: "18rem", height: "15rem" }}
+          style={{
+            width: "18rem",
+            height: "15rem",
+          }}
         />
       </Link>
       <Card.Body>
         <Link to={`/product/${product.slug}`}>
-          <Card.Title>{product.name}</Card.Title>
+          <Card.Title style={{ ...truncateText }}>{product.name}</Card.Title>
         </Link>
         <Rating rating={product.rating} />
         <Card.Text>RM {product.price}</Card.Text>
