@@ -16,13 +16,14 @@ export default function SigninScreen() {
   const redirect = redirectUrl ? redirectUrl : "/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = async (e) => {
     // prevent the page from refresh when clicking the button
     e.preventDefault();
+    setLoading(true);
     try {
       const { data } = await axios.post("/api/users/verify", {
         email,
@@ -33,16 +34,21 @@ export default function SigninScreen() {
       setTimeout(() => {
         localStorage.removeItem("tempuserInfo");
         ctxDispatch({ type: "TEMP_USER_SIGNOUT", payload: null });
-        // console.log(`300 seconds has passed`);
       }, 300000);
       const temp = JSON.parse(localStorage.getItem("tempuserInfo"));
       navigate("/verify");
     } catch (err) {
-      toast.error(getError(err));
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      toast.error(getError(err), {
+        autoClose: 1000,
+      });
     }
   };
 
   useEffect(() => {
+    console.log("useEffect being called");
     if (userInfo) {
       navigate("/");
     }
@@ -76,7 +82,9 @@ export default function SigninScreen() {
           />
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Sign In</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Signing In..." : "Sign In"}
+          </Button>
         </div>
         <div className="mb-3">
           New Customer?
