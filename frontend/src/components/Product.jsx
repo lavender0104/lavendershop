@@ -30,7 +30,13 @@ const Product = (props) => {
     });
   };
   return (
-    <Card style={{ overflow: "hidden", maxHeight: "25rem", wordWrap: true }}>
+    <Card
+      style={{
+        overflow: "hidden",
+        maxHeight: "25rem",
+        wordWrap: true,
+      }}
+    >
       <Link to={`/product/${product.slug}`}>
         <img
           src={product.image}
@@ -43,7 +49,10 @@ const Product = (props) => {
         />
       </Link>
       <Card.Body>
-        <Link to={`/product/${product.slug}`}>
+        <Link
+          to={`/product/${product.slug}`}
+          style={{ textDecoration: "none" }}
+        >
           <Card.Title style={{ ...truncateText }}>{product.name}</Card.Title>
         </Link>
         <Rating rating={product.rating} />
